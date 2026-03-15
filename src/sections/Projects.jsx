@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import ProjectModal from "../components/ProjectModal";
 
 const projects = [
   {
@@ -46,32 +47,74 @@ const projects = [
 ];
 
 export default function Projects() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const openModal = useCallback((project) => {
+    setSelectedProject(project);
+    setModalOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalOpen(false);
+    setTimeout(() => setSelectedProject(null), 200);
+  }, []);
+
+  // useEffect vacío removido — agregá lógica acá si la necesitás
+
   return (
-    <section id="projects" className="py-16 flex flex-col items-center">
-      <h2 className="text-2xl font-bold text-primary mb-8 font-mono">Proyectos</h2>
-      <div className="flex flex-wrap justify-center gap-8 max-w-5xl">
+    <section id="projects" className="py-24 flex flex-col items-center z-10">
+      <h2 className="glow text-3xl font-bold text-cyan-300 mb-12">Proyectos</h2>
+      <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
         {projects.map((p, i) => (
-          <a
+          <div
             key={i}
-            href={p.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-black/80 border border-primary rounded-xl p-6 shadow-lg min-w-[260px] max-w-xs transition-transform hover:scale-105 hover:shadow-primary/40 hover:border-secondary duration-200 relative group flex flex-col gap-2"
+            className="bg-black/80 border-2 border-cyan-900/40 rounded-2xl p-8 shadow-2xl min-w-[260px] max-w-xs transition-transform duration-300 hover:scale-105 hover:shadow-cyan-400/30 hover:border-cyan-400 relative group flex flex-col gap-2 animate-fadein-slow interactive-card"
+            tabIndex={0}
+            onClick={() => openModal(p)}
+            onMouseDown={(e) => {
+              const ripple = document.createElement("span");
+              ripple.className = "ripple";
+              ripple.style.left = `${e.nativeEvent.offsetX}px`;
+              ripple.style.top = `${e.nativeEvent.offsetY}px`;
+              e.currentTarget.appendChild(ripple);
+              setTimeout(() => ripple.remove(), 600);
+            }}
+            onMouseMove={(e) => {
+              const card = e.currentTarget;
+              const rect = card.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              card.style.setProperty("--tilt-x", `${((y / rect.height) - 0.5) * 10}deg`);
+              card.style.setProperty("--tilt-y", `${((x / rect.width) - 0.5) * 10}deg`);
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.setProperty("--tilt-x", "0deg");
+              e.currentTarget.style.setProperty("--tilt-y", "0deg");
+            }}
+            style={{
+              animationDelay: `${i * 0.14}s`,
+              transform: "perspective(600px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))",
+            }}
           >
-            <h3 className="text-lg font-bold text-primary font-mono mb-1">{p.title}</h3>
-            <p className="text-text/80 text-base font-sans mb-2">{p.desc}</p>
+            <h3 className="glow text-lg font-bold text-cyan-200 mb-1">{p.title}</h3>
+            <p className="text-gray-300 text-base font-sans mb-2">{p.desc}</p>
             <div className="flex flex-wrap gap-2 mb-2">
               {p.tech.map((t, j) => (
-                <span key={j} className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-mono">
+                <span key={j} className="bg-cyan-400/10 text-cyan-200 px-2 py-1 rounded text-xs font-mono">
                   {t}
                 </span>
               ))}
             </div>
-            <span className="text-xs text-secondary font-mono group-hover:underline">Ver en GitHub</span>
-            {/* Aquí puede ir preview animado o GIF */}
-          </a>
+            {p.github && (
+              <span className="glow text-cyan-300 hover:text-pink-300 font-mono underline text-sm opacity-70 pointer-events-none select-none">
+                Ver en GitHub
+              </span>
+            )}
+          </div>
         ))}
       </div>
+      <ProjectModal open={modalOpen} onClose={closeModal} project={selectedProject} />
     </section>
   );
 }

@@ -1,0 +1,52 @@
+/*
+  Fondo animado: grid, partículas, glow y noise para atmósfera cyberpunk/indie game.
+  Este CSS se importa en main.jsx.
+*/
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,rgba(0,255,255,0.07) 0 1px,transparent 1px 40px),
+              repeating-linear-gradient(90deg,rgba(0,255,255,0.07) 0 1px,transparent 1px 40px);
+  animation: grid-move 60s linear infinite;
+}
+
+@keyframes grid-move {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 40px 40px, 40px 40px; }
+}
+
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-noise {
+  position: absolute;
+  inset: 0;
+  background: url('https://www.transparenttextures.com/patterns/noise.png');
+  opacity: 0.08;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 10%,rgba(0,255,255,0.08) 0,transparent 70%),
+              radial-gradient(ellipse at 30% 80%,rgba(192,132,252,0.10) 0,transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+}

@@ -1,16 +1,50 @@
-# React + Vite
+# Portfolio de Alejo Briff
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Bienvenido a mi portfolio!
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Portfolio personal desarrollado en React + Vite + TailwindCSS, con estética cyberpunk/indie game/hacker terminal, animaciones avanzadas, micro-interacciones y despliegue en GitHub Pages.
 
-## React Compiler
+## Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://alext031.github.io/
 
-## Expanding the ESLint configuration
+## Características
+- Animaciones de entrada y micro-interacciones (tilt, ripple, timeline, modal)
+- Secciones: Hero, About, Skills, Projects (con modal), Game Dev, Experience, Contact
+- Diseño responsive, accesible y moderno
+- Despliegue automático en GitHub Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación local
+
+```bash
+npm install
+npm run dev
+```
+
+## Build y Deploy
+
+```bash
+npm run build
+npm run deploy
+```
+
+## Estructura
+- src/
+	- sections/ (componentes de cada sección)
+	- components/ (Navbar, ProjectModal, etc)
+	- utils/ (animaciones de fondo)
+	- index.css, bg-animated.css (estilos globales)
+
+## Personalización
+- Edita los archivos en `src/sections/` para cambiar contenido y proyectos.
+- Paleta y fuentes en `tailwind.config.js`.
+
+## Accesibilidad
+- Navegación por teclado, foco visible, aria-labels en links y modales.
+
+## Autor
+Alejo Briff
+
+[LinkedIn](https://linkedin.com/in/alejobriff) | [GitHub](https://github.com/AlexT031)
