@@ -1,13 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>alext031-github-io</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alejo Briff — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="particle-canvas"></canvas>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-logo"><span>//</span> alejo.briff</div>
+  <ul class="nav-links">
+    <li><a href="#about"      data-i18n="nav_about">About</a></li>
+    <li><a href="#skills"     data-i18n="nav_skills">Skills</a></li>
+    <li><a href="#projects"   data-i18n="nav_projects">Projects</a></li>
+    <li><a href="#gamedev"    data-i18n="nav_games">Games</a></li>
+    <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
+    <li><a href="#contact"    data-i18n="nav_contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher" role="group" aria-label="Language switcher">
+      <button class="lang-btn active" id="btn-en" aria-pressed="true">EN</button>
+      <div class="lang-divider"></div>
+      <button class="lang-btn" id="btn-es" aria-pressed="false">ES</button>
+    </div>
+    <div class="nav-indicator">
+      <div class="nav-dot"></div>
+      <span data-i18n="nav_available">Available</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-label" data-i18n="hero_label">// Developer Portfolio</p>
+    <h1 class="hero-title">
+      <span class="line1">Alejo</span>
+      <span class="line2">Briff</span>
+    </h1>
+    <div class="hero-underline"></div>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Backend Developer &amp; Game Developer</p>
+    <p class="hero-desc" data-i18n="hero_desc">Backend developer focused on building scalable systems and experimental interactive projects. Passionate about creating both robust backend architectures and creative game experiences.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary" data-i18n="hero_cta_p">View Projects</a>
+      <a href="#contact"  class="btn btn-ghost"   data-i18n="hero_cta_s">Get in Touch</a>
+    </div>
+    <div class="hero-location" data-i18n="hero_location">Buenos Aires, Argentina</div>
+  </div>
+
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag" data-i18n="about_tag">01 / About</div>
+      <h2 class="section-title" data-i18n="about_title">Who I Am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p data-i18n="about_p1">Alejo Briff is a backend developer and game developer based in Buenos Aires. He specializes in building scalable backend systems, APIs and interactive software.</p>
+        <p data-i18n="about_p2">Alongside professional development, he explores experimental game design and interactive systems using engines such as <strong>Godot</strong> and <strong>Unity</strong>.</p>
+        <p data-i18n="about_p3">He enjoys creating projects that combine technical problem solving with creative design.</p>
+        <div class="about-stats">
+          <div class="stat-card fade-up fade-up-d1">
+            <div class="stat-number">3+</div>
+            <div class="stat-label" data-i18n="stat_exp">Years Coding</div>
+          </div>
+          <div class="stat-card fade-up fade-up-d2">
+            <div class="stat-number">10+</div>
+            <div class="stat-label" data-i18n="stat_proj">Projects Built</div>
+          </div>
+          <div class="stat-card fade-up fade-up-d3">
+            <div class="stat-number">3</div>
+            <div class="stat-label" data-i18n="stat_comp">Companies</div>
+          </div>
+          <div class="stat-card fade-up fade-up-d1">
+            <div class="stat-number">3</div>
+            <div class="stat-label" data-i18n="stat_eng">Game Engines</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual fade-up fade-up-d2">
+        <canvas id="about-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag" data-i18n="skills_tag">02 / Skills</div>
+      <h2 class="section-title" data-i18n="skills_title">Tech Stack</h2>
+    </div>
+    <div id="skills-container"></div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag" data-i18n="proj_tag">03 / Projects</div>
+      <h2 class="section-title" data-i18n="proj_title">What I've Built</h2>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- ══ GAME DEV ══ -->
+<section id="gamedev">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag" data-i18n="games_tag">04 / Game Dev</div>
+      <h2 class="section-title" data-i18n="games_title">Worlds Built</h2>
+    </div>
+    <p class="gamedev-intro fade-up" data-i18n="games_intro">Alongside professional work, Alejo develops independent games exploring experimental mechanics, horror atmospheres, card-based systems and procedural design.</p>
+    <div class="gamedev-engines fade-up">
+      <span class="engine-badge">Godot · GDScript</span>
+      <span class="engine-badge">Unity · C#</span>
+      <span class="engine-badge">LÖVE2D · Lua</span>
+    </div>
+    <div class="gamedev-grid" id="gamedev-grid"></div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-tag" data-i18n="exp_tag">05 / Experience</div>
+      <h2 class="section-title" data-i18n="exp_title">Journey</h2>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-header fade-up" style="text-align:center;margin-bottom:0;">
+        <div class="section-tag" style="justify-content:center;" data-i18n="contact_tag">06 / Contact</div>
+        <h2 class="section-title" data-i18n="contact_title">Let's Connect</h2>
+      </div>
+      <div class="contact-card fade-up">
+        <div class="contact-bg-grid"></div>
+        <p class="contact-headline" data-i18n="contact_headline">Ready to build something?</p>
+        <p class="contact-sub" data-i18n="contact_sub">Whether it's a backend system, a game project, or a wild experiment — I'm always open to interesting conversations and collaborations.</p>
+        <div class="contact-links">
+          <a href="mailto:alejobriff664@gmail.com" class="contact-link">
+            <div class="contact-link-left">
+              <div class="contact-link-icon">✉</div>
+              <div>
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-value">alejobriff664@gmail.com</div>
+              </div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="https://linkedin.com/in/alejobriff" class="contact-link" target="_blank" rel="noopener">
+            <div class="contact-link-left">
+              <div class="contact-link-icon" style="font-family:var(--sans);font-weight:700;font-size:.8rem;">in</div>
+              <div>
+                <div class="contact-link-label">LinkedIn</div>
+                <div class="contact-link-value">linkedin.com/in/alejobriff</div>
+              </div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+          <a href="https://github.com/AlexT031" class="contact-link" target="_blank" rel="noopener">
+            <div class="contact-link-left">
+              <div class="contact-link-icon">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+              </div>
+              <div>
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-value">github.com/alejobriff</div>
+              </div>
+            </div>
+            <span class="contact-link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy" data-i18n="footer_copy">© 2025 Alejo Briff. All systems operational.</div>
+  <div class="footer-made">Made with <span>♥</span> in Buenos Aires</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-thumb"><canvas id="modal-canvas"></canvas></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script src="javascript.js"></script>
+</body>
 </html>
